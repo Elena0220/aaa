@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChinaGo! - Home</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f9f9f9; color: #333; }
+header { background: #ff7043; color: white; padding: 20px; text-align: center; }
+nav a { margin: 0 10px; color: white; text-decoration: none; font-weight: bold; }
+section { padding: 20px; }
+footer { background: #eee; text-align: center; padding: 10px; font-size: 0.9em; }
+.countdown { font-size: 1.5em; margin-top: 10px; }
+</style>
+<script>
+function updateCountdown() {
+    let input = document.getElementById('date-input').value;
+    let countDate = new Date(input).getTime();
+    let now = new Date().getTime();
+    let gap = countDate - now;
+    
+    if (gap <= 0) {
+        document.getElementById('countdown').innerText = "¡Ha llegado el día!";
+        return;
+    }
+    
+    let seconds = 1000;
+    let minutes = seconds * 60;
+    let hours = minutes * 60;
+    let days = hours * 24;
+
+    let d = Math.floor(gap / days);
+    let h = Math.floor((gap % days) / hours);
+    let m = Math.floor((gap % hours) / minutes);
+    let s = Math.floor((gap % minutes) / seconds);
+
+    document.getElementById('countdown').innerText = d + "d " + h + "h " + m + "m " + s + "s ";
+}
+
+setInterval(updateCountdown, 1000);
+</script>
+</head>
+<body>
+
+<header>
+  <h1>ChinaGo!</h1>
+  <p>为旅游设计的简单中文 · Chino básico para viajeros</p>
+  <nav>
+    <a href="index.html">首页</a>
+    <a href="lesson_airport.html">机场</a>
+    <a href="plan.html">复习计划</a>
+    <a href="games.html">小游戏</a>
+    <a href="about.html">关于我们</a>
+  </nav>
+</header>
+<section>
+  <h2>出发倒计时 / Cuenta regresiva</h2>
+  <input type="date" id="date-input">
+  <div id="countdown" class="countdown">请选择出发日期</div>
+</section>
+
+<footer><p>&copy; 2025 ChinaGo! - Todos los derechos reservados</p></footer>
+</body>
+</html>
